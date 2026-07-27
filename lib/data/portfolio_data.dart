@@ -24,7 +24,7 @@ class PortfolioData {
     Experience(
       role: 'Software Intern – Feature Development',
       company: 'Prodia Technologies',
-      duration: 'Dec 2025 - Present',
+      duration: 'Dec 2025 - May 2026',
       description:
           '• Contributed to the development of production-ready healthcare application features at a biotech startup focused on patient–clinician connectivity.\n• Developed and deployed new web app features using Flutter, following production design specifications.\n• Designed and modified Firebase data models to support new feature functionality and evolving product requirements.\n• Improved UI flows and user workflows to better align with real-world clinic operations.\n• Gained exposure to HIPAA-compliant development practices and secure healthcare data handling.',
     ),
