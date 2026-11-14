@@ -1,0 +1,115 @@
+---
+import { portfolioData } from '../../data/portfolio';
+---
+
+<section id="contact" class="py-24 text-center">
+  <div class="max-w-2xl mx-auto">
+    <!-- Section Header -->
+    <span class="text-teal-600 dark:text-teal-400 font-semibold text-sm tracking-wider uppercase">
+      04. What's Next?
+    </span>
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2 mb-4">
+      Get In Touch
+    </h2>
+
+    <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed mb-8">
+      Whether you have a question, an opportunity, or just want to connect about software engineering,
+      Flutter, or game development, my inbox is always open.
+    </p>
+
+    <!-- Email Card with Copy & Direct Mailto -->
+    <div class="p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-900/60 shadow-md mb-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-left">
+          <p class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Email Address</p>
+          <a
+            href={`mailto:${portfolioData.email}`}
+            class="text-base sm:text-lg font-bold text-slate-900 dark:text-white hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+          >
+            {portfolioData.email}
+          </a>
+        </div>
+
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <!-- Copy button -->
+          <button
+            id="copy-email-btn"
+            type="button"
+            data-email={portfolioData.email}
+            class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-teal-500 text-xs font-semibold text-slate-700 dark:text-slate-200 transition-all duration-200"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <span id="copy-btn-text">Copy Email</span>
+          </button>
+
+          <!-- Direct mailto CTA -->
+          <a
+            href={`mailto:${portfolioData.email}`}
+            class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-teal-600 hover:bg-teal-500 text-white text-xs font-semibold shadow-md shadow-teal-500/20 transition-all duration-200"
+          >
+            <span>Say Hello</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Location & Socials -->
+    <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500 dark:text-slate-400">
+      <span class="inline-flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        {portfolioData.location}
+      </span>
+      <span>•</span>
+      <a
+        href={portfolioData.linkedinUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-teal-500 transition-colors"
+      >
+        LinkedIn
+      </a>
+      <span>•</span>
+      <a
+        href={portfolioData.githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-teal-500 transition-colors"
+      >
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const copyBtn = document.getElementById('copy-email-btn');
+  const copyText = document.getElementById('copy-btn-text');
+
+  copyBtn?.addEventListener('click', async () => {
+    const email = copyBtn.getAttribute('data-email');
+    if (!email) return;
+
+    try {
+      await navigator.clipboard.writeText(email);
+      if (copyText) {
+        const original = copyText.textContent;
+        copyText.textContent = 'Copied!';
+        copyBtn.classList.add('border-teal-500', 'text-teal-500');
+        setTimeout(() => {
+          copyText.textContent = original;
+          copyBtn.classList.remove('border-teal-500', 'text-teal-500');
+        }, 2000);
+      }
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+    }
+  });
+</script>

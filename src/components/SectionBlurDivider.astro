@@ -1,0 +1,20 @@
+---
+// SectionBlurDivider replicating the subtle glow and blur transition
+---
+
+<div class="relative py-8 flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 flex items-center" aria-hidden="true">
+    <div class="w-full border-t border-slate-200/80 dark:border-slate-800/80"></div>
+  </div>
+  <div class="relative flex justify-center">
+    <span class="bg-slate-50 dark:bg-slate-950 px-4 text-xs font-mono text-slate-400 dark:text-slate-600 tracking-widest">
+      &lt;/&gt;
+    </span>
+  </div>
+  <!-- Subtle center glow -->
+  <div
+    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-6 bg-teal-500/10 dark:bg-teal-500/15 blur-xl pointer-events-none rounded-full"
+    aria-hidden="true"
+  >
+  </div>
+</div>

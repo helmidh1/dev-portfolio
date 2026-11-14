@@ -1,0 +1,28 @@
+---
+import { portfolioData } from '../data/portfolio';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="py-12 border-t border-slate-200 dark:border-slate-800/80 text-center text-xs text-slate-500 dark:text-slate-400">
+  <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p>
+      © {currentYear} {portfolioData.fullName}. All rights reserved.
+    </p>
+
+    <p class="font-mono text-slate-500 dark:text-slate-400">
+      Built with <span class="text-teal-500 font-semibold">Astro</span> & <span class="text-teal-500 font-semibold">Tailwind CSS</span>
+    </p>
+
+    <a
+      href="#introduction"
+      class="inline-flex items-center gap-1 text-slate-400 hover:text-teal-500 transition-colors"
+      aria-label="Back to Top"
+    >
+      <span>Back to Top</span>
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+      </svg>
+    </a>
+  </div>
+</footer>

@@ -1,0 +1,162 @@
+---
+import { portfolioData } from '../data/portfolio';
+
+const navItems = [
+  { label: 'Introduction', href: '#introduction' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header
+  class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-50/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800/80 transition-colors duration-300"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Brand / Name -->
+    <a
+      href="#introduction"
+      class="flex items-center gap-2 group text-slate-900 dark:text-white font-bold text-lg tracking-tight hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
+    >
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 animate-pulse"></span>
+      <span>{portfolioData.name}</span>
+      <span class="text-xs text-teal-600 dark:text-teal-400 font-normal hidden sm:inline-block border border-teal-500/30 px-2 py-0.5 rounded-full">
+        dev
+      </span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden md:flex items-center gap-6" aria-label="Main Navigation">
+      {
+        navItems.map((item, index) => (
+          <a
+            href={item.href}
+            class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors py-1"
+          >
+            <span class="text-teal-500 text-xs mr-1 font-semibold">0{index + 1}.</span>
+            {item.label}
+          </a>
+        ))
+      }
+
+      <!-- Theme Toggle Button -->
+      <button
+        id="theme-toggle"
+        type="button"
+        aria-label="Toggle Dark/Light Mode"
+        class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-teal-500 dark:hover:text-teal-400 hover:border-teal-500/50 transition-colors"
+      >
+        <!-- Sun icon (shown in dark mode) -->
+        <svg
+          id="theme-toggle-light-icon"
+          class="hidden w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          ></path>
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg
+          id="theme-toggle-dark-icon"
+          class="hidden w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          ></path>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu Button & Theme Toggle -->
+    <div class="flex items-center gap-2 md:hidden">
+      <button
+        id="theme-toggle-mobile"
+        type="button"
+        aria-label="Toggle Dark/Light Mode"
+        class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        </svg>
+      </button>
+
+      <button
+        id="mobile-menu-button"
+        type="button"
+        aria-label="Toggle Menu"
+        class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 pt-2 pb-6 space-y-3"
+  >
+    {
+      navItems.map((item, index) => (
+        <a
+          href={item.href}
+          class="block py-2 text-base font-medium text-slate-700 dark:text-slate-300 hover:text-teal-500"
+        >
+          <span class="text-teal-500 text-xs mr-2 font-semibold">0{index + 1}.</span>
+          {item.label}
+        </a>
+      ))
+    }
+  </div>
+</header>
+
+<script is:inline>
+  const updateIcons = () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    const lightIcons = [document.getElementById('theme-toggle-light-icon')];
+    const darkIcons = [document.getElementById('theme-toggle-dark-icon')];
+
+    lightIcons.forEach((el) => el && el.classList.toggle('hidden', !isDark));
+    darkIcons.forEach((el) => el && el.classList.toggle('hidden', isDark));
+  };
+
+  const toggleTheme = () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateIcons();
+  };
+
+  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+  document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
+
+  // Mobile menu toggle
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  // Close mobile menu when anchor clicked
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+
+  updateIcons();
+</script>
