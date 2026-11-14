@@ -42,29 +42,32 @@ class ProjectsSection extends StatelessWidget {
   Widget _buildHeader(BuildContext context) {
     final isMobile = ResponsiveLayout.isMobile(context);
     final isTablet = ResponsiveLayout.isTablet(context);
+    final isStacked = isTablet || isMobile;
+
+    final titleColumn = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Featured Projects',
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
+        const SizedBox(height: 16),
+        Text(
+          'A selection of projects that showcase my skills in action.',
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+      ],
+    );
 
     return Flex(
-      direction: isTablet || isMobile ? Axis.vertical : Axis.horizontal,
+      direction: isStacked ? Axis.vertical : Axis.horizontal,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: isTablet || isMobile
+      crossAxisAlignment: isStacked
           ? CrossAxisAlignment.start
           : CrossAxisAlignment.end,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Featured Projects',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'A selection of projects that showcase my skills in action.',
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-          ],
-        ),
-        if (isTablet || isMobile) const SizedBox(height: 24),
+        isStacked ? titleColumn : Flexible(child: titleColumn),
+        if (isStacked) const SizedBox(height: 24),
         InkWell(
           onTap: () => _launchUrl(PortfolioData.githubUrl),
           child: Row(

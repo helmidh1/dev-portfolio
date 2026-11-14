@@ -35,7 +35,7 @@ To run this project locally:
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/helmidh1/website_proj_2.git
+    git clone https://github.com/helmidh1/dev-portfolio.git
     ```
 2.  **Install dependencies**:
     ```bash

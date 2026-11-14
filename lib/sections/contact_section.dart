@@ -165,13 +165,14 @@ class _SocialsContactItemState extends State<_SocialsContactItem> {
                       ),
                     ),
                     const SizedBox(height: 4),
-                    Row(
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 4,
                       children: [
                         _SocialLink(
                           label: 'LinkedIn',
                           url: PortfolioData.linkedinUrl,
                         ),
-                        const SizedBox(width: 8),
                         _SocialLink(
                           label: 'GitHub',
                           url: PortfolioData.githubUrl,

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:website_proj_2/data/portfolio_data.dart';
+import 'package:website_proj_2/navigation/scroll_coordinator.dart';
 import 'package:website_proj_2/widgets/responsive_layout.dart';
 import 'package:website_proj_2/theme/app_theme.dart';
 
 class NavBar extends StatelessWidget {
   final bool isDark;
   final VoidCallback onThemeToggle;
-  final Function(String) onNavigate;
 
   const NavBar({
     super.key,
     required this.isDark,
     required this.onThemeToggle,
-    required this.onNavigate,
   });
 
   @override
@@ -37,7 +36,13 @@ class NavBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildLogo(context),
-              if (ResponsiveLayout.isDesktop(context)) _buildNavLinks(context),
+              if (ResponsiveLayout.isDesktop(context))
+                Flexible(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: _buildNavLinks(context),
+                  ),
+                ),
               _buildActions(context),
             ],
           ),
@@ -48,11 +53,15 @@ class NavBar extends StatelessWidget {
 
   Widget _buildLogo(BuildContext context) {
     return InkWell(
-      onTap: () => onNavigate('Introduction'),
+      onTap: () {
+        ScrollCoordinatorScope.maybeOf(context)
+            ?.scrollTo(PortfolioSection.introduction);
+      },
       borderRadius: BorderRadius.circular(12),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Container(
               width: 32,
@@ -85,21 +94,16 @@ class NavBar extends StatelessWidget {
   }
 
   Widget _buildNavLinks(BuildContext context) {
-    final navItems = [
-      'Introduction',
-      'Experience',
-      'Skills',
-      'Projects',
-      'Contact',
-    ];
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: navItems
+      children: PortfolioSection.values
           .map(
-            (item) => Padding(
+            (section) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: InkWell(
-                onTap: () => onNavigate(item),
+                onTap: () {
+                  ScrollCoordinatorScope.maybeOf(context)?.scrollTo(section);
+                },
                 borderRadius: BorderRadius.circular(8),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -107,7 +111,7 @@ class NavBar extends StatelessWidget {
                     vertical: 8,
                   ),
                   child: Text(
-                    item,
+                    section.title,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w500,
                     ),

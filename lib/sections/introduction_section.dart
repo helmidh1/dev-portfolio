@@ -1,12 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:website_proj_2/data/portfolio_data.dart';
+import 'package:website_proj_2/navigation/scroll_coordinator.dart';
 import 'package:website_proj_2/theme/app_theme.dart';
 import 'package:website_proj_2/widgets/responsive_layout.dart';
 
 class IntroductionSection extends StatefulWidget {
-  final Function(String) onNavigate;
-  const IntroductionSection({super.key, required this.onNavigate});
+  const IntroductionSection({super.key});
 
   @override
   State<IntroductionSection> createState() => _IntroductionSectionState();
@@ -140,7 +140,10 @@ class _IntroductionSectionState extends State<IntroductionSection>
       alignment: isMobile ? WrapAlignment.start : WrapAlignment.center,
       children: [
         ElevatedButton(
-          onPressed: () => widget.onNavigate('Projects'),
+          onPressed: () {
+            ScrollCoordinatorScope.maybeOf(context)
+                ?.scrollTo(PortfolioSection.projects);
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppTheme.primaryLight,
             foregroundColor: AppTheme.textPrimaryLight,
@@ -156,7 +159,10 @@ class _IntroductionSectionState extends State<IntroductionSection>
           ),
         ),
         OutlinedButton(
-          onPressed: () => widget.onNavigate('Contact'),
+          onPressed: () {
+            ScrollCoordinatorScope.maybeOf(context)
+                ?.scrollTo(PortfolioSection.contact);
+          },
           style: OutlinedButton.styleFrom(
             foregroundColor: isDark ? Colors.white : AppTheme.textPrimaryLight,
             side: BorderSide(
