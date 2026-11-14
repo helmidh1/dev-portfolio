@@ -8,7 +8,7 @@ export interface Experience {
 export interface Skill {
   name: string;
   icon: string;
-  category: 'Programming' | 'Web & App' | 'Game Dev' | 'Other';
+  category: 'AI' | 'Programming' | 'Web & App' | 'Game Dev' | 'Other';
 }
 
 export interface Project {
@@ -94,6 +94,10 @@ export const portfolioData: Portfolio = {
   ],
 
   skills: [
+    { name: 'Antigravity', icon: 'antigravity', category: 'AI' },
+    { name: 'Gemini', icon: 'gemini', category: 'AI' },
+    { name: 'Claude Code', icon: 'claudecode', category: 'AI' },
+
     { name: 'TypeScript', icon: 'typescript', category: 'Programming' },
     { name: 'Python', icon: 'python', category: 'Programming' },
     { name: 'C#', icon: 'csharp', category: 'Programming' },

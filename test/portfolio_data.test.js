@@ -26,9 +26,15 @@ test('Seam 1: Portfolio Data Contract', async () => {
   assert.ok(Array.isArray(portfolioData.skills), 'skills must be an array');
   assert.ok(portfolioData.skills.length >= 10, 'must contain skills');
   const categories = new Set(portfolioData.skills.map((s) => s.category));
+  assert.ok(categories.has('AI'), 'Skills must contain AI category');
   assert.ok(categories.has('Programming'), 'Skills must contain Programming category');
   assert.ok(categories.has('Web & App'), 'Skills must contain Web & App category');
   assert.ok(categories.has('Game Dev'), 'Skills must contain Game Dev category');
+
+  const skillNames = new Set(portfolioData.skills.map((s) => s.name));
+  assert.ok(skillNames.has('Antigravity'), 'Skills must contain Antigravity');
+  assert.ok(skillNames.has('Gemini'), 'Skills must contain Gemini');
+  assert.ok(skillNames.has('Claude Code'), 'Skills must contain Claude Code');
 
   // Verify projects
   assert.ok(Array.isArray(portfolioData.projects), 'projects must be an array');
