@@ -2,9 +2,11 @@
 
 A fast, responsive developer portfolio built with [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), and TypeScript, featuring a "tech-vibe" aesthetic, zero-JS default runtime, and smooth anchor navigation.
 
-## 🚀 Overview
+## 📖 About
 
-This site is a personal portfolio showcasing professional experience, software projects, and technical skills. Built following Matt Pocock's agentic engineering methodology, it delivers instant First Contentful Paint, perfect Lighthouse accessibility, and dark/light mode theming with JetBrains Mono typography.
+This site is a personal portfolio showcasing the professional software engineering experience, projects, and technical skills of **Helmi D. Hernandez** (AI Software Intern at ATrack Solutions, Computer Science student at Nova Southeastern University, and USMC Veteran).
+
+Built following Matt Pocock's agentic engineering methodology and co-authored with Antigravity AI using Gemini, it delivers instant First Contentful Paint, perfect Lighthouse accessibility, and dark/light mode theming with JetBrains Mono typography.
 
 > [!NOTE]
 > The original Flutter implementation is preserved permanently in the `flutter_00` branch. See [ADR-0001](docs/adr/0001-switch-to-astro.md) for the decision rationale.
@@ -24,6 +26,7 @@ This site is a personal portfolio showcasing professional experience, software p
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Typography**: [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)
 - **Language**: TypeScript
+- **AI & Agentic Tooling**: Google Antigravity, Gemini, Claude Code
 - **Deployment**: [Firebase Hosting](https://firebase.google.com/docs/hosting)
 
 ## 📂 Project Structure
