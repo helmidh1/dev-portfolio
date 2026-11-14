@@ -56,7 +56,7 @@ test('Seam 3: Interactive Selection & Highlight State Integrity', () => {
   assert.ok(skillsContent.includes('data-selected'), 'Skills section must style data-selected');
   assert.ok(skillsContent.includes('data-dissipating'), 'Skills section must configure data-dissipating state');
   assert.ok(skillsContent.includes('e.target.closest'), 'Skills section must include click handler with outside-click detection');
-  assert.ok(skillsContent.includes('1s ease-out'), 'Skills section must configure dissipation transition');
+  assert.ok(skillsContent.includes('0.5s ease-out'), 'Skills section must configure shortened dissipation transition');
 
   // 4. Projects card selection & click-outside dismissal
   const projectsPath = path.resolve('src/components/sections/Projects.astro');

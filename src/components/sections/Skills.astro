@@ -49,7 +49,7 @@ const skillsByCategory = categories.map((cat) => ({
   .skill-badge {
     outline: 2px solid transparent;
     outline-offset: 1px;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
   }
   .skill-badge[data-selected="true"] {
     border-color: rgb(20 184 166);
@@ -58,7 +58,7 @@ const skillsByCategory = categories.map((cat) => ({
     transform: scale(1.06);
     box-shadow: 0 4px 14px rgba(20, 184, 166, 0.25);
     outline-color: rgba(20, 184, 166, 0.5);
-    transition: all 0.15s ease-out;
+    transition: all 0.075s ease-out;
   }
   :global(.dark) .skill-badge[data-selected="true"] {
     border-color: rgb(45 212 191);
@@ -68,7 +68,7 @@ const skillsByCategory = categories.map((cat) => ({
     outline-color: rgba(45, 212, 191, 0.5);
   }
   .skill-badge[data-dissipating="true"] {
-    transition: border-color 1s ease-out, background-color 1s ease-out, color 1s ease-out, transform 0.5s ease-out, box-shadow 1s ease-out, outline-color 1s ease-out;
+    transition: border-color 0.5s ease-out, background-color 0.5s ease-out, color 0.5s ease-out, transform 0.25s ease-out, box-shadow 0.5s ease-out, outline-color 0.5s ease-out;
   }
 </style>
 
@@ -87,7 +87,7 @@ const skillsByCategory = categories.map((cat) => ({
           badge.setAttribute('data-dissipating', 'true');
           setTimeout(() => {
             badge.removeAttribute('data-dissipating');
-          }, 1000);
+          }, 500);
         }
       }
     });
