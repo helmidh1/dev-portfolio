@@ -62,6 +62,10 @@ npm run build
 firebase deploy --only hosting
 ```
 
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
 ---
 
 _Built with ❤️ and Antigravity AI_
