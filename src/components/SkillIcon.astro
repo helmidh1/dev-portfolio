@@ -7,61 +7,14 @@ interface Props {
 
 const { icon, name = '', class: className = 'w-6 h-6' } = Astro.props;
 
-// Replicating the exact icon mapping and colors from the flutter_00 branch (skills_section.dart)
-const materialIconMap: Record<string, { iconName: string; color: string }> = {
-  html: { iconName: 'html', color: '#F97316' },
-  css: { iconName: 'css', color: '#3B82F6' },
-  javascript: { iconName: 'javascript', color: '#FBBF24' },
-  flutter: { iconName: 'flutter_dash', color: '#02569B' },
-  dart: { iconName: 'send', color: '#0175C2' },
-  firebase: { iconName: 'local_fire_department', color: '#FFCA28' },
-  gcp: { iconName: 'cloud_done', color: '#4285F4' },
-  figma: { iconName: 'brush', color: '#F24E1E' },
-  unity: { iconName: 'view_in_ar', color: '#A855F7' },
-  blender: { iconName: '3d_rotation', color: '#F5792A' },
-  sql: { iconName: 'table_chart', color: '#4479A1' },
-  postgresql: { iconName: 'dns', color: '#336791' },
-  python: { iconName: 'terminal', color: '#3776AB' },
-  java: { iconName: 'free_breakfast', color: '#007396' },
-  cpp: { iconName: 'memory', color: '#00599C' },
-  csharp: { iconName: 'code', color: '#512BD4' },
-};
-
-const iconInfo = materialIconMap[icon.toLowerCase()];
+const iconKey = icon.toLowerCase();
+const iconPath = `/assets/skills/${iconKey}.svg`;
+const isMonochrome = iconKey === 'github' || iconKey === 'unity';
 ---
 
-{
-  icon === 'git' ? (
-    <img
-      src="/assets/icons/git_icon.png"
-      alt={name || 'Git'}
-      class={`${className} object-contain`}
-      loading="lazy"
-    />
-  ) : icon === 'github' ? (
-    <img
-      src="/assets/icons/github_icon.png"
-      alt={name || 'GitHub'}
-      class={`${className} object-contain`}
-      loading="lazy"
-    />
-  ) : iconInfo ? (
-    <span
-      class={`material-icons select-none leading-none inline-flex items-center justify-center shrink-0 ${className}`}
-      style={`color: ${iconInfo.color}; font-size: 1.35rem;`}
-      aria-label={name}
-      role="img"
-    >
-      {iconInfo.iconName}
-    </span>
-  ) : (
-    <span
-      class={`material-icons select-none leading-none inline-flex items-center justify-center shrink-0 ${className} text-teal-500`}
-      style="font-size: 1.35rem;"
-      aria-label={name}
-      role="img"
-    >
-      code
-    </span>
-  )
-}
+<img
+  src={iconPath}
+  alt={name || icon}
+  class={`${className} object-contain transition-transform duration-200 group-hover:scale-110 ${isMonochrome ? 'dark:invert dark:brightness-150' : ''}`}
+  loading="lazy"
+/>
