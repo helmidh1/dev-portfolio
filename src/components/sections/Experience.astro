@@ -23,17 +23,17 @@ import { portfolioData } from '../../data/portfolio';
             .filter(Boolean);
 
           return (
-            <div class="relative pl-12 group">
+            <div class="relative pl-12 group experience-item cursor-pointer">
               <!-- Timeline indicator dot: centered horizontally on line and vertically to block -->
               <div class="absolute left-0 top-0 bottom-0 w-8 flex items-center justify-center pointer-events-none">
-                <div class="w-4 h-4 rounded-full bg-teal-500 border-4 border-slate-50 dark:border-slate-950 group-hover:scale-125 group-hover:bg-teal-400 transition-all duration-200 shadow-sm shadow-teal-500/50"></div>
+                <div class="timeline-dot w-4 h-4 rounded-full bg-teal-500 border-4 border-slate-50 dark:border-slate-950 group-hover:scale-125 group-hover:bg-teal-400 transition-all duration-200 shadow-sm shadow-teal-500/50"></div>
               </div>
 
               <!-- Content card -->
-              <div class="p-6 rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-900/60 shadow-sm group-hover:border-teal-500 dark:group-hover:border-teal-400 group-hover:shadow-lg group-hover:shadow-teal-500/10 transition-all duration-200">
+              <div class="experience-card p-6 rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-900/60 shadow-sm group-hover:border-teal-500 dark:group-hover:border-teal-400 group-hover:shadow-lg group-hover:shadow-teal-500/10 transition-all duration-200">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                   <div>
-                    <h3 class="text-lg font-bold text-slate-700 dark:text-slate-300 group-hover:text-slate-950 dark:group-hover:text-white group-hover:brightness-125 dark:group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.45)] transition-all duration-200">
+                    <h3 class="experience-title text-lg font-bold text-slate-700 dark:text-slate-300 group-hover:text-slate-950 dark:group-hover:text-white group-hover:brightness-125 dark:group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.45)] transition-all duration-200">
                       {exp.role}
                     </h3>
                     <p class="text-sm font-medium text-teal-600 dark:text-teal-400">
@@ -61,3 +61,45 @@ import { portfolioData } from '../../data/portfolio';
     </div>
   </div>
 </section>
+
+<style>
+  .experience-item[data-selected="true"] .experience-card {
+    border-color: rgb(20 184 166);
+    box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.25), 0 8px 10px -6px rgba(20, 184, 166, 0.2);
+    outline: 2px solid rgba(20, 184, 166, 0.5);
+    outline-offset: 1px;
+  }
+  :global(.dark) .experience-item[data-selected="true"] .experience-card {
+    border-color: rgb(45 212 191);
+    box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.35), 0 8px 10px -6px rgba(20, 184, 166, 0.3);
+    outline: 2px solid rgba(45, 212, 191, 0.5);
+  }
+  .experience-item[data-selected="true"] .timeline-dot {
+    transform: scale(1.25);
+    background-color: rgb(45 212 191);
+    box-shadow: 0 0 14px rgba(20, 184, 166, 0.7);
+  }
+  .experience-item[data-selected="true"] .experience-title {
+    color: rgb(2 6 23);
+    filter: brightness(1.25);
+  }
+  :global(.dark) .experience-item[data-selected="true"] .experience-title {
+    color: rgb(255 255 255);
+    filter: brightness(1.25) drop-shadow(0 0 10px rgba(255, 255, 255, 0.45));
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('click', (e) => {
+    const items = document.querySelectorAll('.experience-item');
+    const clickedItem = e.target.closest('.experience-item');
+
+    items.forEach((item) => {
+      if (clickedItem && item === clickedItem) {
+        item.setAttribute('data-selected', 'true');
+      } else {
+        item.removeAttribute('data-selected');
+      }
+    });
+  });
+</script>
