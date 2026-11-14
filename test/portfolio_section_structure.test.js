@@ -84,4 +84,6 @@ test('Seam 4: Scroll Spy & Hover Bar Active Tab Highlight Integrity', () => {
   assert.ok(navContent.includes('updateActiveTab'), 'NavBar must define updateActiveTab function');
   assert.ok(navContent.includes('sectionIds'), 'NavBar must track target sectionIds');
   assert.ok(navContent.includes('addEventListener(\'scroll\''), 'NavBar must attach scroll event listener for active tab spy');
+  assert.ok(navContent.includes('scrollY < 100'), 'NavBar must prioritize top of page scrollY < 100 before bottom of page');
+  assert.ok(navContent.includes('getBoundingClientRect'), 'NavBar must use getBoundingClientRect for viewport relative positioning');
 });
