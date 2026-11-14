@@ -106,6 +106,8 @@ export const portfolioData: Portfolio = {
     { name: 'Dart', icon: 'dart', category: 'Programming' },
     { name: 'Bash', icon: 'bash', category: 'Programming' },
 
+    { name: 'Astro', icon: 'astro', category: 'Web & App' },
+    { name: 'Tailwind CSS', icon: 'tailwind', category: 'Web & App' },
     { name: 'React', icon: 'react', category: 'Web & App' },
     { name: 'Flutter', icon: 'flutter', category: 'Web & App' },
     { name: 'Firebase', icon: 'firebase', category: 'Web & App' },
@@ -138,7 +140,7 @@ export const portfolioData: Portfolio = {
       title: 'Developer Portfolio',
       description:
         'A fast, responsive developer portfolio built with Astro, Tailwind CSS, and TypeScript. Features sub-100ms load times, dark/light mode theming, and an active section scroll spy.',
-      tags: ['TypeScript', 'Flutter', 'Firebase', 'Git'],
+      tags: ['Astro', 'Tailwind CSS', 'TypeScript', 'Git'],
       demoUrl: 'https://helmidh.dev/',
       codeUrl: 'https://github.com/helmidh1/dev-portfolio',
       imagePath: '/assets/projects/flutter_firebase.png',

@@ -35,6 +35,8 @@ test('Seam 1: Portfolio Data Contract', async () => {
   assert.ok(skillNames.has('Antigravity'), 'Skills must contain Antigravity');
   assert.ok(skillNames.has('Gemini'), 'Skills must contain Gemini');
   assert.ok(skillNames.has('Claude Code'), 'Skills must contain Claude Code');
+  assert.ok(skillNames.has('Astro'), 'Skills must contain Astro');
+  assert.ok(skillNames.has('Tailwind CSS'), 'Skills must contain Tailwind CSS');
 
   // Verify projects
   assert.ok(Array.isArray(portfolioData.projects), 'projects must be an array');
@@ -46,4 +48,10 @@ test('Seam 1: Portfolio Data Contract', async () => {
     assert.ok(proj.codeUrl.startsWith('https://'), 'Project codeUrl must be https');
     assert.ok(proj.imagePath, 'Project imagePath must be defined');
   }
+
+  const devPortfolio = portfolioData.projects.find((p) => p.title === 'Developer Portfolio');
+  assert.ok(devPortfolio, 'Developer Portfolio project must exist');
+  assert.ok(!devPortfolio.tags.includes('Flutter'), 'Developer Portfolio must not include Flutter tag');
+  assert.ok(devPortfolio.tags.includes('Astro'), 'Developer Portfolio must include Astro tag');
+  assert.ok(devPortfolio.tags.includes('Tailwind CSS'), 'Developer Portfolio must include Tailwind CSS tag');
 });
