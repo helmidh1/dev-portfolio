@@ -1,17 +1,17 @@
 # Portfolio Site
 
-A responsive single-page developer portfolio built with Flutter and Dart, showcasing projects, skills, and professional experience.
+A high-performance single-page developer portfolio built with Astro and Tailwind CSS, showcasing professional experience, projects, skills, and contact details.
 
 ## Language
 
 **Portfolio Section**:
-A distinct content region of the portfolio (Introduction, Experience, Skills, Projects, Contact) navigable from the navbar and interactive hero controls.
+A distinct content region of the portfolio (Introduction, Experience, Skills, Projects, Contact) navigable via the navbar and page anchors.
 _Avoid_: Page, screen, route, tab
 
-**Scroll Coordinator**:
-The module that manages viewport transitions, animation timing, and navbar offset clearance when navigating between portfolio sections.
-_Avoid_: Router, navigator, scroll helper, page controller
+**Tech Vibe Theme**:
+The visual design system featuring JetBrains Mono typography, dark charcoal/slate surfaces, and high-contrast cyan/emerald accents, toggleable to a light mode.
+_Avoid_: Skin, template, stylesheet
 
-**Scroll Section**:
-The declarative container that anchors a specific Portfolio Section to the scroll viewport.
-_Avoid_: Section anchor, section target, key wrapper
+**Portfolio Data**:
+The centralized TypeScript data module (`src/data/portfolio.ts`) that serves as the single source of truth for resume entries, skills, project links, and contact information.
+_Avoid_: Database, state store, CMS

@@ -1,0 +1,3 @@
+# Migrate Portfolio from Flutter Web to Astro
+
+The portfolio website was previously implemented in Flutter Web, but Flutter Web's CanvasKit bundle size (several megabytes) and canvas rendering imposed slow initial load times, non-native browser ergonomics (text selection, search), and SEO friction for prospective recruiters and employers. We decided to migrate the portfolio to Astro using Tailwind CSS and TypeScript, producing zero-JS static HTML by default. This delivers instant First Contentful Paint, perfect Lighthouse scores, and native web accessibility while preserving the existing dark/light "Tech Vibe" design tokens.
