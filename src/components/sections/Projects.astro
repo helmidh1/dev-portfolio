@@ -15,6 +15,15 @@ const getTagStyle = (tag: string) => {
   if (tag.includes('Firebase')) {
     return 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/30';
   }
+  if (tag.includes('React')) {
+    return 'bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-500/30';
+  }
+  if (tag.includes('TypeScript')) {
+    return 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-500/30';
+  }
+  if (tag.includes('Python')) {
+    return 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/30';
+  }
   if (tag.includes('Figma')) {
     return 'bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/30';
   }
