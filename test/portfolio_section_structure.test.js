@@ -46,6 +46,7 @@ test('Seam 3: Interactive Selection & Highlight State Integrity', () => {
   assert.ok(expContent.includes('experience-item'), 'Experience section must mark items with .experience-item');
   assert.ok(expContent.includes('data-selected'), 'Experience section must style data-selected');
   assert.ok(expContent.includes('e.target.closest'), 'Experience section must include click handler with outside-click detection');
+  assert.ok(expContent.includes('1s ease-out'), 'Experience section must configure dissipation transition');
 
   // 3. Skills badge selection & click-outside dismissal
   const skillsPath = path.resolve('src/components/sections/Skills.astro');
@@ -53,6 +54,7 @@ test('Seam 3: Interactive Selection & Highlight State Integrity', () => {
   assert.ok(skillsContent.includes('skill-badge'), 'Skills section must mark badges with .skill-badge');
   assert.ok(skillsContent.includes('data-selected'), 'Skills section must style data-selected');
   assert.ok(skillsContent.includes('e.target.closest'), 'Skills section must include click handler with outside-click detection');
+  assert.ok(skillsContent.includes('1s ease-out'), 'Skills section must configure dissipation transition');
 
   // 4. Projects card selection & click-outside dismissal
   const projectsPath = path.resolve('src/components/sections/Projects.astro');
@@ -60,4 +62,23 @@ test('Seam 3: Interactive Selection & Highlight State Integrity', () => {
   assert.ok(projectsContent.includes('project-card'), 'Projects section must mark cards with .project-card');
   assert.ok(projectsContent.includes('data-selected'), 'Projects section must style data-selected');
   assert.ok(projectsContent.includes('e.target.closest'), 'Projects section must include click handler with outside-click detection');
+  assert.ok(projectsContent.includes('1s ease-out'), 'Projects section must configure dissipation transition');
+});
+
+test('Seam 4: Scroll Spy & Hover Bar Active Tab Highlight Integrity', () => {
+  const navPath = path.resolve('src/components/NavBar.astro');
+  const navContent = fs.readFileSync(navPath, 'utf-8');
+
+  // Verify desktop and mobile nav tab classes
+  assert.ok(navContent.includes('nav-tab'), 'NavBar must define .nav-tab for desktop navigation tabs');
+  assert.ok(navContent.includes('mobile-nav-tab'), 'NavBar must define .mobile-nav-tab for mobile menu tabs');
+
+  // Verify active tab data attribute styling
+  assert.ok(navContent.includes('.nav-tab[data-active="true"]'), 'NavBar must style active desktop tabs with [data-active="true"]');
+  assert.ok(navContent.includes('.mobile-nav-tab[data-active="true"]'), 'NavBar must style active mobile tabs with [data-active="true"]');
+
+  // Verify Scroll Spy mechanism
+  assert.ok(navContent.includes('updateActiveTab'), 'NavBar must define updateActiveTab function');
+  assert.ok(navContent.includes('sectionIds'), 'NavBar must track target sectionIds');
+  assert.ok(navContent.includes('addEventListener(\'scroll\''), 'NavBar must attach scroll event listener for active tab spy');
 });

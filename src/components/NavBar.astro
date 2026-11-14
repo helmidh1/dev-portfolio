@@ -27,15 +27,15 @@ const navItems = [
     </a>
 
     <!-- Desktop Navigation Links -->
-    <nav class="hidden md:flex items-center gap-6" aria-label="Main Navigation">
+    <nav class="hidden md:flex items-center gap-2" aria-label="Main Navigation">
       {
         navItems.map((item) => (
           <a
             href={item.href}
-            class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors py-1"
+            class="nav-tab px-3.5 py-1.5 rounded-lg border border-transparent text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-500/10 dark:hover:bg-teal-500/15 hover:border-teal-500/30 transition-all duration-200"
           >
-            {item.number && <span class="text-teal-500 text-xs mr-1 font-semibold">{item.number}</span>}
-            {item.label}
+            {item.number && <span class="nav-tab-number text-teal-500 text-xs mr-1.5 font-semibold transition-colors duration-200">{item.number}</span>}
+            <span>{item.label}</span>
           </a>
         ))
       }
@@ -134,7 +134,7 @@ const navItems = [
       navItems.map((item) => (
         <a
           href={item.href}
-          class="block px-3.5 py-2.5 rounded-lg border border-transparent text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-teal-500/10 dark:hover:bg-teal-500/15 hover:border-teal-500/30 hover:text-teal-600 dark:hover:text-teal-400 active:bg-teal-500/25 dark:active:bg-teal-500/35 active:border-teal-500/70 active:text-teal-700 dark:active:text-teal-300 active:shadow-inner active:shadow-teal-500/20 active:scale-[0.99] transition-all duration-150"
+          class="mobile-nav-tab block px-3.5 py-2.5 rounded-lg border border-transparent text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-teal-500/10 dark:hover:bg-teal-500/15 hover:border-teal-500/30 hover:text-teal-600 dark:hover:text-teal-400 active:bg-teal-500/25 dark:active:bg-teal-500/35 active:border-teal-500/70 active:text-teal-700 dark:active:text-teal-300 active:shadow-inner active:shadow-teal-500/20 active:scale-[0.99] transition-all duration-150"
         >
           {item.number && <span class="text-teal-500 text-xs mr-2 font-semibold">{item.number}</span>}
           {item.label}
@@ -143,6 +143,42 @@ const navItems = [
     }
   </div>
 </header>
+
+<style>
+  .nav-tab[data-active="true"] {
+    background-color: rgba(20, 184, 166, 0.12);
+    border-color: rgba(20, 184, 166, 0.4);
+    color: rgb(13 148 136);
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(20, 184, 166, 0.12);
+  }
+  :global(.dark) .nav-tab[data-active="true"] {
+    background-color: rgba(20, 184, 166, 0.2);
+    border-color: rgba(45, 212, 191, 0.5);
+    color: rgb(45 212 191);
+    box-shadow: 0 1px 8px rgba(20, 184, 166, 0.25);
+  }
+  .nav-tab[data-active="true"] .nav-tab-number {
+    color: rgb(13 148 136);
+    font-weight: 700;
+  }
+  :global(.dark) .nav-tab[data-active="true"] .nav-tab-number {
+    color: rgb(45 212 191);
+    font-weight: 700;
+  }
+
+  .mobile-nav-tab[data-active="true"] {
+    background-color: rgba(20, 184, 166, 0.14);
+    border-color: rgba(20, 184, 166, 0.45);
+    color: rgb(13 148 136);
+    font-weight: 600;
+  }
+  :global(.dark) .mobile-nav-tab[data-active="true"] {
+    background-color: rgba(20, 184, 166, 0.22);
+    border-color: rgba(45, 212, 191, 0.55);
+    color: rgb(45 212 191);
+  }
+</style>
 
 <script is:inline>
   const updateIcons = () => {
@@ -209,6 +245,63 @@ const navItems = [
   mobileMenu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => toggleMenu(false));
   });
+
+  // Scroll Spy for active nav tab highlight in the hover bar
+  const sectionIds = ['introduction', 'experience', 'skills', 'projects', 'contact'];
+  const navTabs = document.querySelectorAll('.nav-tab, .mobile-nav-tab');
+
+  const updateActiveTab = () => {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+
+    // 1. If at bottom of page, highlight contact
+    if (scrollY + windowHeight >= docHeight - 80) {
+      setActiveNavTab('contact');
+      return;
+    }
+
+    // 2. If at top of page, highlight introduction
+    if (scrollY < 120) {
+      setActiveNavTab('introduction');
+      return;
+    }
+
+    // 3. Middle sections: find current visible section
+    const probeY = scrollY + 180;
+    let activeId = 'introduction';
+
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.offsetTop;
+        const bottom = top + el.offsetHeight;
+        if (probeY >= top && probeY < bottom) {
+          activeId = id;
+          break;
+        } else if (probeY >= top) {
+          activeId = id;
+        }
+      }
+    }
+
+    setActiveNavTab(activeId);
+  };
+
+  const setActiveNavTab = (id) => {
+    navTabs.forEach((tab) => {
+      const href = tab.getAttribute('href');
+      if (href === `#${id}`) {
+        tab.setAttribute('data-active', 'true');
+      } else {
+        tab.removeAttribute('data-active');
+      }
+    });
+  };
+
+  window.addEventListener('scroll', updateActiveTab, { passive: true });
+  window.addEventListener('resize', updateActiveTab, { passive: true });
+  updateActiveTab();
 
   updateIcons();
 </script>
