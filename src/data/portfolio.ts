@@ -106,9 +106,10 @@ export const portfolioData: Portfolio = {
     { name: 'Dart', icon: 'dart', category: 'Programming' },
     { name: 'Bash', icon: 'bash', category: 'Programming' },
 
+    { name: 'Next.js', icon: 'nextjs', category: 'Web & App' },
+    { name: 'React', icon: 'react', category: 'Web & App' },
     { name: 'Astro', icon: 'astro', category: 'Web & App' },
     { name: 'Tailwind CSS', icon: 'tailwind', category: 'Web & App' },
-    { name: 'React', icon: 'react', category: 'Web & App' },
     { name: 'Flutter', icon: 'flutter', category: 'Web & App' },
     { name: 'Firebase', icon: 'firebase', category: 'Web & App' },
     { name: 'Google Cloud', icon: 'gcp', category: 'Web & App' },
@@ -134,6 +135,15 @@ export const portfolioData: Portfolio = {
       tags: ['TypeScript', 'React', 'Python', 'Git'],
       demoUrl: '',
       codeUrl: 'https://github.com/helmidh1/video_notes_00',
+      imagePath: '/assets/projects/flutter_firebase.png',
+    },
+    {
+      title: 'Genshin Impact Helper',
+      description:
+        'A local-first combat theorycrafting and build inspection platform built with Next.js 16, React 19, TypeScript, and Tailwind CSS. Features Enka.Network showcase sync, automated Crit Value (CV) grading, and KQM-style team rotation coaching powered by Gemini 3.8 Flash.',
+      tags: ['Next.js', 'React', 'TypeScript', 'Gemini'],
+      demoUrl: '',
+      codeUrl: 'https://github.com/helmidh1/genshin_impact_helper',
       imagePath: '/assets/projects/flutter_firebase.png',
     },
     {

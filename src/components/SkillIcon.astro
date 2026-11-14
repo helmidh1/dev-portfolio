@@ -9,7 +9,8 @@ const { icon, name = '', class: className = 'w-6 h-6' } = Astro.props;
 
 const iconKey = icon.toLowerCase();
 const iconPath = `/assets/skills/${iconKey}.svg`;
-const isMonochrome = iconKey === 'github' || iconKey === 'unity';
+const isMonochrome =
+  iconKey === 'github' || iconKey === 'unity' || iconKey === 'nextjs' || iconKey === 'next';
 ---
 
 <img

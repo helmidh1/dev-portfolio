@@ -37,6 +37,7 @@ test('Seam 1: Portfolio Data Contract', async () => {
   assert.ok(skillNames.has('Claude Code'), 'Skills must contain Claude Code');
   assert.ok(skillNames.has('Astro'), 'Skills must contain Astro');
   assert.ok(skillNames.has('Tailwind CSS'), 'Skills must contain Tailwind CSS');
+  assert.ok(skillNames.has('Next.js'), 'Skills must contain Next.js');
 
   // Verify projects
   assert.ok(Array.isArray(portfolioData.projects), 'projects must be an array');
@@ -54,4 +55,9 @@ test('Seam 1: Portfolio Data Contract', async () => {
   assert.ok(!devPortfolio.tags.includes('Flutter'), 'Developer Portfolio must not include Flutter tag');
   assert.ok(devPortfolio.tags.includes('Astro'), 'Developer Portfolio must include Astro tag');
   assert.ok(devPortfolio.tags.includes('Tailwind CSS'), 'Developer Portfolio must include Tailwind CSS tag');
+
+  const genshinProject = portfolioData.projects.find((p) => p.title === 'Genshin Impact Helper');
+  assert.ok(genshinProject, 'Genshin Impact Helper project must exist');
+  assert.ok(genshinProject.tags.includes('Next.js'), 'Genshin project must include Next.js tag');
+  assert.ok(genshinProject.codeUrl.includes('genshin_impact_helper'), 'Genshin project must link to repo');
 });
