@@ -13,28 +13,28 @@ const navItems = [
 <header
   class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-50/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800/80 transition-colors duration-300"
 >
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
     <!-- Brand / Name -->
     <a
       href="#introduction"
-      class="flex items-center gap-2 group text-slate-900 dark:text-white font-bold text-lg tracking-tight hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
+      class="flex items-center gap-1.5 shrink-0 whitespace-nowrap group text-slate-900 dark:text-white font-bold text-base sm:text-lg tracking-tight hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
     >
-      <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 animate-pulse"></span>
-      <span>{portfolioData.name}</span>
-      <span class="text-xs text-teal-600 dark:text-teal-400 font-normal hidden sm:inline-block border border-teal-500/30 px-2 py-0.5 rounded-full">
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-teal-500 animate-pulse shrink-0"></span>
+      <span class="whitespace-nowrap">{portfolioData.name}</span>
+      <span class="text-[11px] leading-none text-teal-600 dark:text-teal-400 font-normal border border-teal-500/30 px-1.5 py-0.5 rounded-full shrink-0 ml-0.5">
         dev
       </span>
     </a>
 
     <!-- Desktop Navigation Links -->
-    <nav class="hidden md:flex items-center gap-2" aria-label="Main Navigation">
+    <nav class="hidden md:flex items-center gap-1 lg:gap-2 shrink-0" aria-label="Main Navigation">
       {
         navItems.map((item) => (
           <a
             href={item.href}
-            class="nav-tab px-3.5 py-1.5 rounded-lg border border-transparent text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-500/10 dark:hover:bg-teal-500/15 hover:border-teal-500/30 transition-all duration-200"
+            class="nav-tab px-2.5 py-1 lg:px-3.5 lg:py-1.5 rounded-lg border border-transparent text-xs lg:text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-500/10 dark:hover:bg-teal-500/15 hover:border-teal-500/30 transition-all duration-200 whitespace-nowrap"
           >
-            {item.number && <span class="nav-tab-number text-teal-500 text-xs mr-1.5 font-semibold transition-colors duration-200">{item.number}</span>}
+            {item.number && <span class="nav-tab-number text-teal-500 text-xs mr-1 lg:mr-1.5 font-semibold transition-colors duration-200">{item.number}</span>}
             <span>{item.label}</span>
           </a>
         ))
