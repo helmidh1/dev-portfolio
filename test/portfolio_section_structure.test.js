@@ -45,6 +45,7 @@ test('Seam 3: Interactive Selection & Highlight State Integrity', () => {
   const expContent = fs.readFileSync(expPath, 'utf-8');
   assert.ok(expContent.includes('experience-item'), 'Experience section must mark items with .experience-item');
   assert.ok(expContent.includes('data-selected'), 'Experience section must style data-selected');
+  assert.ok(expContent.includes('data-dissipating'), 'Experience section must configure data-dissipating state');
   assert.ok(expContent.includes('e.target.closest'), 'Experience section must include click handler with outside-click detection');
   assert.ok(expContent.includes('1s ease-out'), 'Experience section must configure dissipation transition');
 
@@ -53,6 +54,7 @@ test('Seam 3: Interactive Selection & Highlight State Integrity', () => {
   const skillsContent = fs.readFileSync(skillsPath, 'utf-8');
   assert.ok(skillsContent.includes('skill-badge'), 'Skills section must mark badges with .skill-badge');
   assert.ok(skillsContent.includes('data-selected'), 'Skills section must style data-selected');
+  assert.ok(skillsContent.includes('data-dissipating'), 'Skills section must configure data-dissipating state');
   assert.ok(skillsContent.includes('e.target.closest'), 'Skills section must include click handler with outside-click detection');
   assert.ok(skillsContent.includes('1s ease-out'), 'Skills section must configure dissipation transition');
 
@@ -61,6 +63,7 @@ test('Seam 3: Interactive Selection & Highlight State Integrity', () => {
   const projectsContent = fs.readFileSync(projectsPath, 'utf-8');
   assert.ok(projectsContent.includes('project-card'), 'Projects section must mark cards with .project-card');
   assert.ok(projectsContent.includes('data-selected'), 'Projects section must style data-selected');
+  assert.ok(projectsContent.includes('data-dissipating'), 'Projects section must configure data-dissipating state');
   assert.ok(projectsContent.includes('e.target.closest'), 'Projects section must include click handler with outside-click detection');
   assert.ok(projectsContent.includes('1s ease-out'), 'Projects section must configure dissipation transition');
 });

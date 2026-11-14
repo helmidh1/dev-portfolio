@@ -119,7 +119,7 @@ const getTagIcon = (tag: string): string => {
   .project-card {
     outline: 2px solid transparent;
     outline-offset: 1px;
-    transition: transform 0.5s ease-out, border-color 1s ease-out, box-shadow 1s ease-out, outline-color 1s ease-out;
+    transition: all 0.2s ease-in-out;
   }
   .project-card[data-selected="true"] {
     transform: scale(1.03);
@@ -133,6 +133,9 @@ const getTagIcon = (tag: string): string => {
     box-shadow: 0 12px 32px rgba(20, 184, 166, 0.45);
     outline-color: rgba(45, 212, 191, 0.5);
   }
+  .project-card[data-dissipating="true"] {
+    transition: transform 0.5s ease-out, border-color 1s ease-out, box-shadow 1s ease-out, outline-color 1s ease-out;
+  }
 </style>
 
 <script is:inline>
@@ -142,9 +145,16 @@ const getTagIcon = (tag: string): string => {
 
     cards.forEach((card) => {
       if (clickedCard && card === clickedCard) {
+        card.removeAttribute('data-dissipating');
         card.setAttribute('data-selected', 'true');
       } else {
-        card.removeAttribute('data-selected');
+        if (card.hasAttribute('data-selected')) {
+          card.removeAttribute('data-selected');
+          card.setAttribute('data-dissipating', 'true');
+          setTimeout(() => {
+            card.removeAttribute('data-dissipating');
+          }, 1000);
+        }
       }
     });
   });

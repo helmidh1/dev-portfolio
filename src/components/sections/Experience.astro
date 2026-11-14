@@ -66,7 +66,7 @@ import { portfolioData } from '../../data/portfolio';
   .experience-card {
     outline: 2px solid transparent;
     outline-offset: 1px;
-    transition: border-color 1s ease-out, box-shadow 1s ease-out, outline-color 1s ease-out, filter 1s ease-out, background-color 0.8s ease-out, color 1s ease-out;
+    transition: all 0.2s ease-in-out;
   }
   .experience-item[data-selected="true"] .experience-card {
     border-color: rgb(20 184 166);
@@ -79,8 +79,12 @@ import { portfolioData } from '../../data/portfolio';
     box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.35), 0 8px 10px -6px rgba(20, 184, 166, 0.3);
     outline-color: rgba(45, 212, 191, 0.5);
   }
+  .experience-item[data-dissipating="true"] .experience-card {
+    transition: border-color 1s ease-out, box-shadow 1s ease-out, outline-color 1s ease-out, filter 1s ease-out, background-color 0.8s ease-out, color 1s ease-out;
+  }
+
   .timeline-dot {
-    transition: transform 0.5s ease-out, background-color 1s ease-out, box-shadow 1s ease-out;
+    transition: all 0.2s ease-in-out;
   }
   .experience-item[data-selected="true"] .timeline-dot {
     transform: scale(1.25);
@@ -88,8 +92,12 @@ import { portfolioData } from '../../data/portfolio';
     box-shadow: 0 0 14px rgba(20, 184, 166, 0.7);
     transition: all 0.15s ease-out;
   }
+  .experience-item[data-dissipating="true"] .timeline-dot {
+    transition: transform 0.5s ease-out, background-color 1s ease-out, box-shadow 1s ease-out;
+  }
+
   .experience-title {
-    transition: color 1s ease-out, filter 1s ease-out;
+    transition: all 0.2s ease-in-out;
   }
   .experience-item[data-selected="true"] .experience-title {
     color: rgb(2 6 23);
@@ -100,6 +108,9 @@ import { portfolioData } from '../../data/portfolio';
     color: rgb(255 255 255);
     filter: brightness(1.25) drop-shadow(0 0 10px rgba(255, 255, 255, 0.45));
   }
+  .experience-item[data-dissipating="true"] .experience-title {
+    transition: color 1s ease-out, filter 1s ease-out;
+  }
 </style>
 
 <script is:inline>
@@ -109,9 +120,16 @@ import { portfolioData } from '../../data/portfolio';
 
     items.forEach((item) => {
       if (clickedItem && item === clickedItem) {
+        item.removeAttribute('data-dissipating');
         item.setAttribute('data-selected', 'true');
       } else {
-        item.removeAttribute('data-selected');
+        if (item.hasAttribute('data-selected')) {
+          item.removeAttribute('data-selected');
+          item.setAttribute('data-dissipating', 'true');
+          setTimeout(() => {
+            item.removeAttribute('data-dissipating');
+          }, 1000);
+        }
       }
     });
   });

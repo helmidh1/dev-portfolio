@@ -49,7 +49,7 @@ const skillsByCategory = categories.map((cat) => ({
   .skill-badge {
     outline: 2px solid transparent;
     outline-offset: 1px;
-    transition: border-color 1s ease-out, background-color 1s ease-out, color 1s ease-out, transform 0.5s ease-out, box-shadow 1s ease-out, outline-color 1s ease-out;
+    transition: all 0.2s ease-in-out;
   }
   .skill-badge[data-selected="true"] {
     border-color: rgb(20 184 166);
@@ -67,6 +67,9 @@ const skillsByCategory = categories.map((cat) => ({
     box-shadow: 0 4px 18px rgba(20, 184, 166, 0.4);
     outline-color: rgba(45, 212, 191, 0.5);
   }
+  .skill-badge[data-dissipating="true"] {
+    transition: border-color 1s ease-out, background-color 1s ease-out, color 1s ease-out, transform 0.5s ease-out, box-shadow 1s ease-out, outline-color 1s ease-out;
+  }
 </style>
 
 <script is:inline>
@@ -76,9 +79,16 @@ const skillsByCategory = categories.map((cat) => ({
 
     badges.forEach((badge) => {
       if (clickedBadge && badge === clickedBadge) {
+        badge.removeAttribute('data-dissipating');
         badge.setAttribute('data-selected', 'true');
       } else {
-        badge.removeAttribute('data-selected');
+        if (badge.hasAttribute('data-selected')) {
+          badge.removeAttribute('data-selected');
+          badge.setAttribute('data-dissipating', 'true');
+          setTimeout(() => {
+            badge.removeAttribute('data-dissipating');
+          }, 1000);
+        }
       }
     });
   });
